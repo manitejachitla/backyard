@@ -1,4 +1,4 @@
-export default class Backyard {
+class Backyard {
 	#worker = null;
 	#autoTerminate = true;
 
