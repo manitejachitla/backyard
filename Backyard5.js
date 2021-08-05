@@ -1,8 +1,3 @@
-// alert("amma baboi")
-// window.accountFunction=function (){
-//     console.log("madaaaaaf")
-// }
-// alert("done")
 window.runFunc = (ctx, input, cb)=>{
     let getThingDetails = input.getThingDetails;
     let options = input.options;
