@@ -1,16 +1,21 @@
-// alert("hey")
-window.backyard=class Backyard {
+// alert("amma baboi")
+// window.accountFunction=function (){
+//     console.log("madaaaaaf")
+// }
+// alert("done")
+window.backyard =class Backyard {
     #worker = null;
     #autoTerminate = true;
 
     constructor(config) {
+        console.log("config",config)
         if (config) {
-            let { cb, run, scripts, autoTerminate, input } = config;
+            let { cb, scripts, autoTerminate, input } = config;
 
             if (!scripts) {
                 scripts = [];
             }
-
+            let run=window.runFunction
             if (run && cb && scripts) {
                 this.#runInBackyard({ cb, run, scripts, autoTerminate, input });
             } else {
@@ -39,7 +44,10 @@ window.backyard=class Backyard {
 
                 const { workerFunction, input } = data;
 
-                const myFunc = eval(workerFunction);
+                let myFunc =function (a,b,c) {
+                    console.log("workerFunction",workerFunction)
+                    return eval(workerFunction)(a,b,c)
+                };
 
                 const cb = (obj) => {
                     postMessage(obj);
@@ -90,15 +98,13 @@ window.backyard=class Backyard {
         };
 
         w.postMessage({
-            workerFunction: run.toString(),
+            workerFunction: "(".concat(window.runFunction.toString())+").bind(this)",
             input,
         });
 
         this.#worker = w;
     };
 }
-// alert("done")
-// window.backyard=Backyard
 
 /* EXAMPLE USAGE */
 
